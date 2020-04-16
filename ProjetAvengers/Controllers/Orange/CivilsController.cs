@@ -22,56 +22,52 @@ namespace ProjetAvengers.Controllers.Orange
 
         // GET: api/Civils
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CivilsDTO>>> GetCivils()
+        public async Task<ActionResult<IEnumerable<Civils>>> GetCivils()
         {
-            return await _context.Civils
-                .Select(x => ItemToDTO(x))
-                .ToListAsync();
+            return await _context.Civils.ToListAsync();
         }
 
         // GET: api/Civils/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CivilsDTO>> GetCivils(long id)
+        public async Task<ActionResult<Civils>> GetCivils(int id)
         {
-            var Civils = await _context.Civils.FindAsync(id);
+            var civils = await _context.Civils.FindAsync(id);
 
-            if (Civils == null)
+            if (civils == null)
             {
                 return NotFound();
             }
 
-            return ItemToDTO(Civils);
+            return civils;
         }
 
         // PUT: api/Civils/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCivils(long id, CivilsDTO CivilsDTO)
+        public async Task<IActionResult> PutCivils(int id, Civils civils)
         {
-            if (id != CivilsDTO.Id)
+            if (id != civils.Id)
             {
                 return BadRequest();
             }
 
-            var Civils = await _context.Civils.FindAsync(id);
-            if (Civils == null)
-            {
-                return NotFound();
-            }
-
-            Civils.Civilite = CivilsDTO.Civilite;
-            Civils.Nom = CivilsDTO.Nom;
-            Civils.Prenom = CivilsDTO.Prenom;
-
+            _context.Entry(civils).State = EntityState.Modified;
 
             try
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException) when (!CivilsExists(id))
+            catch (DbUpdateConcurrencyException)
             {
-                return NotFound();
+                if (!CivilsExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
             return NoContent();
@@ -81,52 +77,33 @@ namespace ProjetAvengers.Controllers.Orange
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<CivilsDTO>> CreateCivils(CivilsDTO CivilsDTO)
+        public async Task<ActionResult<Civils>> PostCivils(Civils civils)
         {
-            var Civils = new Civils
-            {
-            Civilite = CivilsDTO.Civilite,
-            Nom = CivilsDTO.Nom,
-            Prenom = CivilsDTO.Prenom
-        
-        };
-
-            _context.Civils.Add(Civils);
+            _context.Civils.Add(civils);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(
-                nameof(GetCivils),
-                new { id = Civils.Id },
-                ItemToDTO(Civils));
+            return CreatedAtAction("GetCivils", new { id = civils.Id }, civils);
         }
 
         // DELETE: api/Civils/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCivils(long id)
+        public async Task<ActionResult<Civils>> DeleteCivils(int id)
         {
-            var Civils = await _context.Civils.FindAsync(id);
-
-            if (Civils == null)
+            var civils = await _context.Civils.FindAsync(id);
+            if (civils == null)
             {
                 return NotFound();
             }
 
-            _context.Civils.Remove(Civils);
+            _context.Civils.Remove(civils);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return civils;
         }
 
-        private bool CivilsExists(long id) =>
-             _context.Civils.Any(e => e.Id == id);
-
-        private static CivilsDTO ItemToDTO(Civils Civils) =>
-            new CivilsDTO
-            {
-                Id = Civils.Id,
-                Civilite=Civils.Civilite,
-                Nom = Civils.Nom,
-                Prenom = Civils.Prenom
-            };
+        private bool CivilsExists(int id)
+        {
+            return _context.Civils.Any(e => e.Id == id);
+        }
     }
 }
