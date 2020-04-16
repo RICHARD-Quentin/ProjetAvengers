@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjetAvengers.Models;
 
+
 namespace ProjetAvengers.Controllers.Orange
 {
     [Route("api/[controller]")]
@@ -22,16 +23,16 @@ namespace ProjetAvengers.Controllers.Orange
 
         // GET: api/Super_Hero
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Super_Hero>>> GetSuper_Heros()
+        public async Task<ActionResult<IEnumerable<Super_Hero>>> GetSuper_Hero()
         {
-            return await _context.Super_Heros.ToListAsync();
+            return await _context.Super_Hero.ToListAsync();
         }
 
         // GET: api/Super_Hero/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Super_Hero>> GetSuper_Hero(int id)
         {
-            var super_Hero = await _context.Super_Heros.FindAsync(id);
+            var super_Hero = await _context.Super_Hero.FindAsync(id);
 
             if (super_Hero == null)
             {
@@ -79,7 +80,7 @@ namespace ProjetAvengers.Controllers.Orange
         [HttpPost]
         public async Task<ActionResult<Super_Hero>> PostSuper_Hero(Super_Hero super_Hero)
         {
-            _context.Super_Heros.Add(super_Hero);
+            _context.Super_Hero.Add(super_Hero);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetSuper_Hero", new { id = super_Hero.Id }, super_Hero);
@@ -89,13 +90,13 @@ namespace ProjetAvengers.Controllers.Orange
         [HttpDelete("{id}")]
         public async Task<ActionResult<Super_Hero>> DeleteSuper_Hero(int id)
         {
-            var super_Hero = await _context.Super_Heros.FindAsync(id);
+            var super_Hero = await _context.Super_Hero.FindAsync(id);
             if (super_Hero == null)
             {
                 return NotFound();
             }
 
-            _context.Super_Heros.Remove(super_Hero);
+            _context.Super_Hero.Remove(super_Hero);
             await _context.SaveChangesAsync();
 
             return super_Hero;
@@ -103,7 +104,7 @@ namespace ProjetAvengers.Controllers.Orange
 
         private bool Super_HeroExists(int id)
         {
-            return _context.Super_Heros.Any(e => e.Id == id);
+            return _context.Super_Hero.Any(e => e.Id == id);
         }
     }
 }

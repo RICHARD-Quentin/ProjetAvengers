@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ProjetAvengers.Models;
 
-namespace ProjetAvengers.Models.Orange
-{
+namespace ProjetAvengers.Models
+{ 
     public class AvengersContext : DbContext
     {
         public AvengersContext(DbContextOptions<AvengersContext> options)

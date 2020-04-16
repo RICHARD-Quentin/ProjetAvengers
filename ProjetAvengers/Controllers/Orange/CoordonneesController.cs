@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjetAvengers.Models;
 
+
 namespace ProjetAvengers.Controllers.Orange
 {
     [Route("api/[controller]")]
@@ -24,14 +25,14 @@ namespace ProjetAvengers.Controllers.Orange
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Coordonnee>>> GetCoordonnees()
         {
-            return await _context.Coordonnees.ToListAsync();
+            return await _context.Coordonnee.ToListAsync();
         }
 
         // GET: api/Coordonnees/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Coordonnee>> GetCoordonnee(int id)
         {
-            var coordonnee = await _context.Coordonnees.FindAsync(id);
+            var coordonnee = await _context.Coordonnee.FindAsync(id);
 
             if (coordonnee == null)
             {
@@ -79,7 +80,7 @@ namespace ProjetAvengers.Controllers.Orange
         [HttpPost]
         public async Task<ActionResult<Coordonnee>> PostCoordonnee(Coordonnee coordonnee)
         {
-            _context.Coordonnees.Add(coordonnee);
+            _context.Coordonnee.Add(coordonnee);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetCoordonnee", new { id = coordonnee.Id }, coordonnee);
@@ -89,13 +90,13 @@ namespace ProjetAvengers.Controllers.Orange
         [HttpDelete("{id}")]
         public async Task<ActionResult<Coordonnee>> DeleteCoordonnee(int id)
         {
-            var coordonnee = await _context.Coordonnees.FindAsync(id);
+            var coordonnee = await _context.Coordonnee.FindAsync(id);
             if (coordonnee == null)
             {
                 return NotFound();
             }
 
-            _context.Coordonnees.Remove(coordonnee);
+            _context.Coordonnee.Remove(coordonnee);
             await _context.SaveChangesAsync();
 
             return coordonnee;
@@ -103,7 +104,7 @@ namespace ProjetAvengers.Controllers.Orange
 
         private bool CoordonneeExists(int id)
         {
-            return _context.Coordonnees.Any(e => e.Id == id);
+            return _context.Coordonnee.Any(e => e.Id == id);
         }
     }
 }
