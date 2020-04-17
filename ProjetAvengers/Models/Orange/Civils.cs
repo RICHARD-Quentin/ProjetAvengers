@@ -14,9 +14,9 @@ namespace ProjetAvengers.Models
         public string Prenom { get; set; }
         public string Telephone_portable { get; set; }
         public string Nationalite { get; set; }
-        public DateTime Date_de_naissance { get; set; }
-        public DateTime Date_de_deces { get; set; }
-        public DateTime Derniere_modification { get; set; }
+        public string Date_de_naissance { get; set; }
+        public string Date_de_deces { get; set; }
+        public string Derniere_modification { get; set; }
         public ICollection<Coordonnee> Coordonnees { get; set; }
         public ICollection<Membre> Membres { get; set; }
         public Organisation Dirigeant { get; set; }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetAvengers.Models;
 
 namespace ProjetAvengers.Migrations
 {
     [DbContext(typeof(AvengersContext))]
-    partial class AvengersContextModelSnapshot : ModelSnapshot
+    [Migration("20200416130605_ChangementTypeDate")]
+    partial class ChangementTypeDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

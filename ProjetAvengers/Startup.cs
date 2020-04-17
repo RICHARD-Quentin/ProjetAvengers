@@ -27,7 +27,16 @@ namespace ProjetAvengers
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowMyOrigin",
+                builder => builder.AllowAnyOrigin());
+            }); 
             services.AddDbContext<AvengersContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Database")));
+            //services.AddDbContext<BleuContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Database")));
+            //services.AddDbContext<RougeContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Database")));
+            //services.AddDbContext<VertContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Database")));
+
             services.AddControllers();
         }
 
@@ -38,6 +47,8 @@ namespace ProjetAvengers
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("AllowMyOrigin");
 
             app.UseHttpsRedirection();
 
