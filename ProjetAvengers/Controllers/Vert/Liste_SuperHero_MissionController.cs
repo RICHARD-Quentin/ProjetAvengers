@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ProjetAvengers.Data;
+using ProjetAvengers.Models;
 using ProjetAvengers.Models.Vert;
 
 namespace ProjetAvengers.Controllers.Vert
@@ -14,9 +14,9 @@ namespace ProjetAvengers.Controllers.Vert
     [ApiController]
     public class Liste_SuperHero_MissionController : ControllerBase
     {
-        private readonly VertContext _context;
+        private readonly AvengersContext _context;
 
-        public Liste_SuperHero_MissionController(VertContext context)
+        public Liste_SuperHero_MissionController(AvengersContext context)
         {
             _context = context;
         }

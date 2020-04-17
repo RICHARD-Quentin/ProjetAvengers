@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace ProjetAnengers.Models
+namespace ProjetAvengers.Models
 {
     public class Crise
     {
         public int Id { get; set; }
-        public string incident_majeur { get; set; }
-        public bool litige { get; set; }
+        public string Incident_majeur { get; set; }
+        public bool Litige { get; set; }
 
     }
 }

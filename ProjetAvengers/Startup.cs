@@ -12,8 +12,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using ProjetAvengers.Models;
-using ProjetAvengers.Models.Bleu;
-using ProjetAvengers.Models.Rouge;
 
 namespace ProjetAvengers
 {
@@ -35,9 +33,6 @@ namespace ProjetAvengers
                 builder => builder.AllowAnyOrigin());
             }); 
             services.AddDbContext<AvengersContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Database")));
-            services.AddDbContext<BleuContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Database")));
-            services.AddDbContext<RougeContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Database")));
-            //services.AddDbContext<VertContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Database")));
 
             services.AddControllers();
         }

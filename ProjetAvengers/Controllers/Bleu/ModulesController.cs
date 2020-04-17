@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ProjetAvengers.Models;
 using ProjetAvengers.Models.Bleu;
 
 namespace ProjetAvengers.Controllers.Bleu
@@ -13,9 +14,9 @@ namespace ProjetAvengers.Controllers.Bleu
     [ApiController]
     public class ModulesController : ControllerBase
     {
-        private readonly BleuContext _context;
+        private readonly AvengersContext _context;
 
-        public ModulesController(BleuContext context)
+        public ModulesController(AvengersContext context)
         {
             _context = context;
         }

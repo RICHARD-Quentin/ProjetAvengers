@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace ProjetAnengers.Models
+namespace ProjetAvengers.Models
 {
     public class Litige
     {
-        public int id { get; set; }
-        public string objet { get; set; }
-        public string type_litige { get; set; }
+        public int Id { get; set; }
+        public string Objet { get; set; }
+        public string Type_litige { get; set; }
     }
 }

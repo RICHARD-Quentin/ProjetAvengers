@@ -1,11 +1,12 @@
 ﻿using System;
 
-namespace ProjetAnengers.Models
+namespace ProjetAvengers.Models
 {
     public class Liste_sv_crise
     {
-        public int id_crise { get; set; }
-        public int id_supervilain { get; set; }
+        public int Id { get; set; }
+        public int Id_crise { get; set; }
+        public int Id_supervilain { get; set; }
 
     }
 }
