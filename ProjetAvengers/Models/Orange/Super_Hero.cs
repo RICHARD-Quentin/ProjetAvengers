@@ -10,9 +10,9 @@ namespace ProjetAvengers.Models
     {
         public int Id { get; set; }
         public string Nom { get; set; }
-        public string pouvoir { get; set; }
-        public string point_faible { get; set; }
-        public int score { get; set; }
+        public string Pouvoir { get; set; }
+        public string Point_faible { get; set; }
+        public int Score { get; set; }
         [ForeignKey("Identite")]
         public Civils Civils_Id { get; set; }
     }

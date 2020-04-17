@@ -2,58 +2,58 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ProjetAvengers.Models;
+using ProjetAvengers.Data;
+using ProjetAvengers.Models.Vert;
 
-namespace ProjetAvengers.Controllers.Orange
+namespace ProjetAvengers.Controllers.Vert
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CivilsController : ControllerBase
+    public class MissionsController : ControllerBase
     {
-        private readonly AvengersContext _context;
+        private readonly VertContext _context;
 
-        public CivilsController(AvengersContext context)
+        public MissionsController(VertContext context)
         {
             _context = context;
         }
 
-        // GET: api/Civils
+        // GET: api/Missions
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Civils>>> GetCivils()
+        public async Task<ActionResult<IEnumerable<Mission>>> GetMission()
         {
-            return await _context.Civils.ToListAsync();
+            return await _context.Mission.ToListAsync();
         }
 
-        // GET: api/Civils/5
+        // GET: api/Missions/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Civils>> GetCivils(int id)
+        public async Task<ActionResult<Mission>> GetMission(int id)
         {
-            var civils = await _context.Civils.FindAsync(id);
+            var mission = await _context.Mission.FindAsync(id);
 
-            if (civils == null)
+            if (mission == null)
             {
                 return NotFound();
             }
 
-            return civils;
+            return mission;
         }
 
-        // PUT: api/Civils/5
+        // PUT: api/Missions/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCivils(int id, Civils civils)
+        public async Task<IActionResult> PutMission(int id, Mission mission)
         {
-            if (id != civils.Id)
+            if (id != mission.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(civils).State = EntityState.Modified;
+            _context.Entry(mission).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace ProjetAvengers.Controllers.Orange
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CivilsExists(id))
+                if (!MissionExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace ProjetAvengers.Controllers.Orange
             return NoContent();
         }
 
-        // POST: api/Civils
+        // POST: api/Missions
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Civils>> PostCivils(Civils civils)
+        public async Task<ActionResult<Mission>> PostMission(Mission mission)
         {
-            _context.Civils.Add(civils);
+            _context.Mission.Add(mission);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCivils", new { id = civils.Id }, civils);
+            return CreatedAtAction("GetMission", new { id = mission.Id }, mission);
         }
 
-        // DELETE: api/Civils/5
+        // DELETE: api/Missions/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Civils>> DeleteCivils(int id)
+        public async Task<ActionResult<Mission>> DeleteMission(int id)
         {
-            var civils = await _context.Civils.FindAsync(id);
-            if (civils == null)
+            var mission = await _context.Mission.FindAsync(id);
+            if (mission == null)
             {
                 return NotFound();
             }
 
-            _context.Civils.Remove(civils);
+            _context.Mission.Remove(mission);
             await _context.SaveChangesAsync();
 
-            return civils;
+            return mission;
         }
 
-        private bool CivilsExists(int id)
+        private bool MissionExists(int id)
         {
-            return _context.Civils.Any(e => e.Id == id);
+            return _context.Mission.Any(e => e.Id == id);
         }
     }
 }
