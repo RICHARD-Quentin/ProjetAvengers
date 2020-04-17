@@ -5,54 +5,54 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ProjetAvengers.Models;
+using ProjetAvengers.Models.Bleu;
 
-namespace ProjetAvengers.Controllers
+namespace ProjetAvengers.Controllers.Bleu
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CivilsDTOesController : ControllerBase
+    public class ModulesController : ControllerBase
     {
-        private readonly AvengersContext _context;
+        private readonly BleuContext _context;
 
-        public CivilsDTOesController(AvengersContext context)
+        public ModulesController(BleuContext context)
         {
             _context = context;
         }
 
-        // GET: api/CivilsDTOes
+        // GET: api/Modules
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CivilsDTO>>> GetCivilsDTO()
+        public async Task<ActionResult<IEnumerable<Modules>>> GetModules()
         {
-            return await _context.CivilsDTO.ToListAsync();
+            return await _context.Modules.ToListAsync();
         }
 
-        // GET: api/CivilsDTOes/5
+        // GET: api/Modules/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CivilsDTO>> GetCivilsDTO(int id)
+        public async Task<ActionResult<Modules>> GetModules(int id)
         {
-            var civilsDTO = await _context.CivilsDTO.FindAsync(id);
+            var modules = await _context.Modules.FindAsync(id);
 
-            if (civilsDTO == null)
+            if (modules == null)
             {
                 return NotFound();
             }
 
-            return civilsDTO;
+            return modules;
         }
 
-        // PUT: api/CivilsDTOes/5
+        // PUT: api/Modules/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCivilsDTO(int id, CivilsDTO civilsDTO)
+        public async Task<IActionResult> PutModules(int id, Modules modules)
         {
-            if (id != civilsDTO.Id)
+            if (id != modules.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(civilsDTO).State = EntityState.Modified;
+            _context.Entry(modules).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace ProjetAvengers.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CivilsDTOExists(id))
+                if (!ModulesExists(id))
                 {
                     return NotFound();
                 }
@@ -73,37 +73,37 @@ namespace ProjetAvengers.Controllers
             return NoContent();
         }
 
-        // POST: api/CivilsDTOes
+        // POST: api/Modules
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<CivilsDTO>> PostCivilsDTO(CivilsDTO civilsDTO)
+        public async Task<ActionResult<Modules>> PostModules(Modules modules)
         {
-            _context.CivilsDTO.Add(civilsDTO);
+            _context.Modules.Add(modules);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCivilsDTO", new { id = civilsDTO.Id }, civilsDTO);
+            return CreatedAtAction("GetModules", new { id = modules.Id }, modules);
         }
 
-        // DELETE: api/CivilsDTOes/5
+        // DELETE: api/Modules/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<CivilsDTO>> DeleteCivilsDTO(int id)
+        public async Task<ActionResult<Modules>> DeleteModules(int id)
         {
-            var civilsDTO = await _context.CivilsDTO.FindAsync(id);
-            if (civilsDTO == null)
+            var modules = await _context.Modules.FindAsync(id);
+            if (modules == null)
             {
                 return NotFound();
             }
 
-            _context.CivilsDTO.Remove(civilsDTO);
+            _context.Modules.Remove(modules);
             await _context.SaveChangesAsync();
 
-            return civilsDTO;
+            return modules;
         }
 
-        private bool CivilsDTOExists(int id)
+        private bool ModulesExists(int id)
         {
-            return _context.CivilsDTO.Any(e => e.Id == id);
+            return _context.Modules.Any(e => e.Id == id);
         }
     }
 }

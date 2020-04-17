@@ -15,7 +15,7 @@ namespace ProjetAvengers.Models
         public string Ville { get; set; }
         public string Pays { get; set; }
         public string Telephone_fixe { get; set; }
-        public bool est_Principale { get; set; }
+        public bool Est_Principale { get; set; }
         public Civils Civils_Id { get; set; }
         public Organisation Organisation_Id { get; set; }
     }

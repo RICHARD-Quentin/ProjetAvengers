@@ -15,7 +15,7 @@ namespace ProjetAvengers.Models
         }
 
         public DbSet<Civils> Civils { get; set; }
-        public DbSet<ProjetAvengers.Models.CivilsDTO> CivilsDTO { get; set; }
+        //public DbSet<ProjetAvengers.Models.CivilsDTO> CivilsDTO { get; set; }
         public DbSet<Organisation> Organisation { get; set; }
         public DbSet<Coordonnee> Coordonnee { get; set; }
         public DbSet<Membre> Membre { get; set; }
