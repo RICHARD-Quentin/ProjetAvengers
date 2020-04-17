@@ -29,14 +29,14 @@ namespace ProjetAvengers.Migrations
                     b.Property<string>("Civilite")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Date_de_deces")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Date_de_deces")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Date_de_naissance")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Date_de_naissance")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Derniere_modification")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Derniere_modification")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nationalite")
                         .HasColumnType("nvarchar(max)");
@@ -55,27 +55,6 @@ namespace ProjetAvengers.Migrations
                     b.ToTable("Civils");
                 });
 
-            modelBuilder.Entity("ProjetAvengers.Models.CivilsDTO", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Civilite")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nom")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Prenom")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CivilsDTO");
-                });
-
             modelBuilder.Entity("ProjetAvengers.Models.Coordonnee", b =>
                 {
                     b.Property<int>("Id")
@@ -92,6 +71,9 @@ namespace ProjetAvengers.Migrations
                     b.Property<int>("Code_Postal")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Est_Principale")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Numero_de_voie")
                         .HasColumnType("int");
 
@@ -106,9 +88,6 @@ namespace ProjetAvengers.Migrations
 
                     b.Property<string>("Ville")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("est_Principale")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -185,13 +164,13 @@ namespace ProjetAvengers.Migrations
                     b.Property<string>("Nom")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("point_faible")
+                    b.Property<string>("Point_faible")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("pouvoir")
+                    b.Property<string>("Pouvoir")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("score")
+                    b.Property<int>("Score")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -216,13 +195,13 @@ namespace ProjetAvengers.Migrations
                     b.Property<string>("Nom")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("point_faible")
+                    b.Property<string>("Point_faible")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("pouvoir")
+                    b.Property<string>("Pouvoir")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("score")
+                    b.Property<int>("Score")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
