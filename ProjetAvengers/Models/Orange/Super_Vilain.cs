@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetAvengers.Models.Vert;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -15,5 +16,8 @@ namespace ProjetAvengers.Models
         public int Score { get; set; }
         [ForeignKey("Identite")]
         public Civils Civils_Id { get; set; }
+        public Liste_SuperVilain_Mission Liste_SuperVilain_Missions { get; set; }
+        public Liste_sv_crise Liste_SuperVilain_Crise { get; set; }
+
     }
 }

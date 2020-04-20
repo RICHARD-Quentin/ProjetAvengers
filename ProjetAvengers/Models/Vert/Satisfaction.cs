@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ProjetAvengers.Models.Bleu;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,5 +16,8 @@ namespace ProjetAvengers.Models.Vert
         public int Fichiers { get; set; }
         public int Type_litige { get; set; }
         public string Commentaire { get; set; }
+        public Mission Mission { get; set; }
+        public Modules Modules { get; set; }
+
     }
 }

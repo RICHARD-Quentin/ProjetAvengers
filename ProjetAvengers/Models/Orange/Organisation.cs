@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProjetAvengers.Models.Bleu;
+using ProjetAvengers.Models.Vert;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,6 +20,9 @@ namespace ProjetAvengers.Models
         public Civils Civils_Id { get; set; }
         public ICollection<Coordonnee> Coordonnees { get; set; }
         public ICollection<Membre> Membres { get; set; }
+        public ICollection<Mission> Missions { get; set; }
+        public Utilisateur Utilisateur { get; set; }
+        public ICollection<Incidents> Incidents { get; set; }
 
     }
 }

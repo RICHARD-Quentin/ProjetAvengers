@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetAvengers.Models.Bleu;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -22,5 +23,7 @@ namespace ProjetAvengers.Models
         public Organisation Dirigeant { get; set; }
         public Super_Hero Super_Hero { get; set; }
         public Super_Vilain Super_Vilain { get; set; }
+        public ICollection<Incidents> Incidents { get; set; }
+        public Utilisateur Utilisateur { get; set; }
     }
 }

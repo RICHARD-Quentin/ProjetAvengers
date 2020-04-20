@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,7 +14,8 @@ namespace ProjetAvengers.Models.Bleu
         public bool Modification { get; set; }
         public bool Suppression { get; set; }
         public string Role { get; set; }
-
-
+        [ForeignKey("User")]
+        public Utilisateur Utilisateur { get; set; }
+        public Modules Modules { get; set; }
     }
 }
