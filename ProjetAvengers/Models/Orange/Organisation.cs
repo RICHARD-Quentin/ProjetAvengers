@@ -16,7 +16,7 @@ namespace ProjetAvengers.Models
         public string Telephone_Portable { get; set; }
         public DateTime Date_de_creation { get; set; }
         public DateTime Derniere_modification { get; set; }
-        [ForeignKey("Dirigeant")]
+        [ForeignKey("CivilsId")]
         public Civils Civils_Id { get; set; }
         public ICollection<Coordonnee> Coordonnees { get; set; }
         public ICollection<Membre> Membres { get; set; }

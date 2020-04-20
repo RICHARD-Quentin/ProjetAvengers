@@ -16,7 +16,9 @@ namespace ProjetAvengers.Models.Vert
         public int Fichiers { get; set; }
         public int Type_litige { get; set; }
         public string Commentaire { get; set; }
+        [ForeignKey("MissionId")]
         public Mission Mission { get; set; }
+        [ForeignKey("ModuleId")]
         public Modules Modules { get; set; }
 
     }

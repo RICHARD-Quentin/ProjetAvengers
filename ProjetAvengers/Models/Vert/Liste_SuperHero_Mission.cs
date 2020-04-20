@@ -9,9 +9,9 @@ namespace ProjetAvengers.Models.Vert
     public class Liste_SuperHero_Mission
     {
         public int Id { get; set; }
-        [ForeignKey("Mission")]
+        [ForeignKey("MissionId")]
         public Mission Missions { get; set; }
-        [ForeignKey("Super_Hero")]
+        [ForeignKey("Liste_Super_Hero_Mission_Id")]
         public ICollection<Super_Hero> Super_Heros { get; set; }
     }
 }

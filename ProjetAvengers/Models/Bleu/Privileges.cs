@@ -14,8 +14,9 @@ namespace ProjetAvengers.Models.Bleu
         public bool Modification { get; set; }
         public bool Suppression { get; set; }
         public string Role { get; set; }
-        [ForeignKey("User")]
+        [ForeignKey("UtilisateurId")]
         public Utilisateur Utilisateur { get; set; }
+        [ForeignKey("ModuleId")]
         public Modules Modules { get; set; }
     }
 }

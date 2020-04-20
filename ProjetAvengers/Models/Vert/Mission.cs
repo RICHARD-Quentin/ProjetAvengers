@@ -19,10 +19,11 @@ namespace ProjetAvengers.Models.Vert
         public Rapport_Mission Rapport_Mission { get; set; }
         public ICollection<Satisfaction> Satisfactions { get; set; }
         public Organisation Organisation { get; set; }
+        [ForeignKey("ModuleId")]
         public Modules Modules { get; set; }
         public Liste_SuperHero_Mission Liste_SuperHero_Mission { get; set; }
         public Liste_SuperVilain_Mission Liste_SuperVilain_Mission { get; set; }
-        [ForeignKey("Incident")]
+        [ForeignKey("IncidentsId")]
         public Incidents Incidents { get; set; }
     }
 }

@@ -9,9 +9,9 @@ namespace ProjetAvengers.Models.Vert
     public class Liste_SuperVilain_Mission
     {
         public int Id { get; set; }
-        [ForeignKey("Mission")]
+        [ForeignKey("MissionId")]
         public Mission Missions { get; set; }
-        [ForeignKey("Super_Vilain")]
+        [ForeignKey("Liste_Super_Vilain_Mission_Id")]
         public ICollection<Super_Vilain> Super_Vilains { get; set; }
     }
 }
