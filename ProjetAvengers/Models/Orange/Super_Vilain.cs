@@ -13,11 +13,10 @@ namespace ProjetAvengers.Models
         public string Nom { get; set; }
         public string Pouvoir { get; set; }
         public string Point_faible { get; set; }
-        public int Score { get; set; }
+        public int? Score { get; set; }
         [ForeignKey("CivilsId")]
         public Civils Civils_Id { get; set; }
         public Liste_SuperVilain_Mission Liste_SuperVilain_Missions { get; set; }
         public Liste_sv_crise Liste_SuperVilain_Crise { get; set; }
-
     }
 }
