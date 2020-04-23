@@ -23,7 +23,6 @@ namespace ProjetAvengers.Models
         public DateTime? Date_de_deces { get; set; }
         [Column(TypeName = "date")]
         public DateTime Derniere_modification { get; set; }
-       
         public ICollection<Coordonnee> Coordonnees { get; set; }
         [JsonIgnore]
         public ICollection<Membre> Membres { get; set; }

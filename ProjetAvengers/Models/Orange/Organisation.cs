@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ProjetAvengers.Models
@@ -20,6 +21,7 @@ namespace ProjetAvengers.Models
         public DateTime Derniere_modification { get; set; }
         [ForeignKey("CivilsId")]
         public Civils Civils_Id { get; set; }
+        [JsonIgnore]
         public ICollection<Coordonnee> Coordonnees { get; set; }
         public ICollection<Membre> Membres { get; set; }
         public ICollection<Mission> Missions { get; set; }
