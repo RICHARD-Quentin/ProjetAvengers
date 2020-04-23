@@ -13,8 +13,9 @@ namespace ProjetAvengers.Models.Vert
         public string Detail_intervention { get; set; }
         public string Vilain_intervention { get; set; }
         public string Nouveau_Civil { get; set; }
-        [ForeignKey("Mission_Incident")]
+        [ForeignKey("MissionId")]
         public Mission Mission { get; set; }
+        [ForeignKey("ModuleId")]
         public Modules Modules { get; set; }
 
     }

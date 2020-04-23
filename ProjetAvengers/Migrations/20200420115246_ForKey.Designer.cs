@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetAvengers.Models;
 
 namespace ProjetAvengers.Migrations
 {
     [DbContext(typeof(AvengersContext))]
-    partial class AvengersContextModelSnapshot : ModelSnapshot
+    [Migration("20200420115246_ForKey")]
+    partial class ForKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -385,12 +387,6 @@ namespace ProjetAvengers.Migrations
                     b.Property<int?>("CivilsId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Liste_Super_Hero_Crise_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Liste_Super_Hero_Mission_Id")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nom")
                         .HasColumnType("nvarchar(max)");
 
@@ -403,15 +399,16 @@ namespace ProjetAvengers.Migrations
                     b.Property<int>("Score")
                         .HasColumnType("int");
 
+                    b.Property<int?>("Super_HeroId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CivilsId")
                         .IsUnique()
                         .HasFilter("[CivilsId] IS NOT NULL");
 
-                    b.HasIndex("Liste_Super_Hero_Crise_Id");
-
-                    b.HasIndex("Liste_Super_Hero_Mission_Id");
+                    b.HasIndex("Super_HeroId");
 
                     b.ToTable("Super_Hero");
                 });
@@ -426,12 +423,6 @@ namespace ProjetAvengers.Migrations
                     b.Property<int?>("CivilsId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Liste_Super_Vilain_Crise_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Liste_Super_Vilain_Mission_Id")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nom")
                         .HasColumnType("nvarchar(max)");
 
@@ -444,15 +435,16 @@ namespace ProjetAvengers.Migrations
                     b.Property<int>("Score")
                         .HasColumnType("int");
 
+                    b.Property<int?>("Super_VilainId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CivilsId")
                         .IsUnique()
                         .HasFilter("[CivilsId] IS NOT NULL");
 
-                    b.HasIndex("Liste_Super_Vilain_Crise_Id");
-
-                    b.HasIndex("Liste_Super_Vilain_Mission_Id");
+                    b.HasIndex("Super_VilainId");
 
                     b.ToTable("Super_Vilain");
                 });
@@ -729,11 +721,11 @@ namespace ProjetAvengers.Migrations
 
                     b.HasOne("ProjetAvengers.Models.Liste_sh_crise", "Liste_SuperVilain_Crise")
                         .WithMany("Id_superhero")
-                        .HasForeignKey("Liste_Super_Hero_Crise_Id");
+                        .HasForeignKey("Super_HeroId");
 
                     b.HasOne("ProjetAvengers.Models.Vert.Liste_SuperHero_Mission", "Liste_SuperHero_Missions")
                         .WithMany("Super_Heros")
-                        .HasForeignKey("Liste_Super_Hero_Mission_Id");
+                        .HasForeignKey("Super_HeroId");
                 });
 
             modelBuilder.Entity("ProjetAvengers.Models.Super_Vilain", b =>
@@ -744,11 +736,11 @@ namespace ProjetAvengers.Migrations
 
                     b.HasOne("ProjetAvengers.Models.Liste_sv_crise", "Liste_SuperVilain_Crise")
                         .WithMany("Id_supervilain")
-                        .HasForeignKey("Liste_Super_Vilain_Crise_Id");
+                        .HasForeignKey("Super_VilainId");
 
                     b.HasOne("ProjetAvengers.Models.Vert.Liste_SuperVilain_Mission", "Liste_SuperVilain_Missions")
                         .WithMany("Super_Vilains")
-                        .HasForeignKey("Liste_Super_Vilain_Mission_Id");
+                        .HasForeignKey("Super_VilainId");
                 });
 
             modelBuilder.Entity("ProjetAvengers.Models.Vert.Liste_SuperHero_Mission", b =>

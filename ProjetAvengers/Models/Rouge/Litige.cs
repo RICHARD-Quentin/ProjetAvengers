@@ -9,8 +9,9 @@ namespace ProjetAvengers.Models
         public int Id { get; set; }
         public string Objet { get; set; }
         public string Type_litige { get; set; }
-        [ForeignKey("Crises")]
+        [ForeignKey("CriseId")]
         public Crise Crise { get; set; }
+        [ForeignKey("ModuleId")]
         public Modules Modules { get; set; }
     }
 }

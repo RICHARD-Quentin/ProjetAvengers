@@ -7,8 +7,10 @@ namespace ProjetAvengers.Models
     public class Liste_sh_crise
     {
         public int Id { get; set; }
-        [ForeignKey("Crise")]
+        [ForeignKey("CriseId")]
         public Crise Id_crise { get; set; }
+
+        [ForeignKey("Liste_Super_Hero_Crise_Id")]
         public ICollection<Super_Hero> Id_superhero { get; set; }
     }
 }

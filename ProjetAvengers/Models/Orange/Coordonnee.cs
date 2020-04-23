@@ -16,7 +16,9 @@ namespace ProjetAvengers.Models
         public string Pays { get; set; }
         public string Telephone_fixe { get; set; }
         public bool Est_Principale { get; set; }
+        [ForeignKey("CivilsId")]
         public Civils Civils_Id { get; set; }
+        [ForeignKey("OrganisationId")]
         public Organisation Organisation_Id { get; set; }
     }
 }
