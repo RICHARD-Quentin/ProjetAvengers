@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace ProjetAvengers.Models
 {
@@ -14,8 +15,11 @@ namespace ProjetAvengers.Models
         public string Pouvoir { get; set; }
         public string Point_faible { get; set; }
         public int? Score { get; set; }
-        [ForeignKey("CivilsId")]
+        
+        [ForeignKey("CivilsId")]  
+        
         public Civils Civils_Id { get; set; }
+        
         public Liste_SuperHero_Mission Liste_SuperHero_Missions { get; set; }
         public Liste_sh_crise Liste_SuperHero_Crise { get; set; }
 
