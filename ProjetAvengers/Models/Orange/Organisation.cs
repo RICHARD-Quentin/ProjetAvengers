@@ -14,7 +14,9 @@ namespace ProjetAvengers.Models
         public int Id { get; set; }
         public string Nom { get; set; }
         public string Telephone_Portable { get; set; }
+        [Column(TypeName = "date")]
         public DateTime Date_de_creation { get; set; }
+        [Column(TypeName = "date")]
         public DateTime Derniere_modification { get; set; }
         [ForeignKey("CivilsId")]
         public Civils Civils_Id { get; set; }

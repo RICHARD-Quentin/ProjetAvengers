@@ -17,7 +17,7 @@ namespace ProjetAvengers.Models
         [ForeignKey("CivilsId")]
         public Civils Civils_Id { get; set; }
         public Liste_SuperHero_Mission Liste_SuperHero_Missions { get; set; }
-        public Liste_sh_crise Liste_SuperVilain_Crise { get; set; }
+        public Liste_sh_crise Liste_SuperHero_Crise { get; set; }
 
 
     }

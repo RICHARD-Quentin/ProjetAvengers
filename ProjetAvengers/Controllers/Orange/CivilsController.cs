@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +24,7 @@ namespace ProjetAvengers.Controllers.Orange
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Civils>>> GetCivils()
         {
-            return await _context.Civils.ToListAsync();
+            return await _context.Civils.Include(C => C.Coordonnees).ToListAsync();
         }
 
         // GET: api/Civils/5
