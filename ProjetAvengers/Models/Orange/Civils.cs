@@ -1,4 +1,5 @@
-﻿using ProjetAvengers.Models.Bleu;
+﻿using System.Text.Json.Serialization;
+using ProjetAvengers.Models.Bleu;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -20,6 +21,7 @@ namespace ProjetAvengers.Models
         public string Derniere_modification { get; set; }
         public ICollection<Coordonnee> Coordonnees { get; set; }
         public ICollection<Membre> Membres { get; set; }
+        [JsonIgnore]
         public Organisation Dirigeant { get; set; }
         public Super_Hero Super_Hero { get; set; }
         public Super_Vilain Super_Vilain { get; set; }
