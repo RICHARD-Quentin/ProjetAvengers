@@ -10,8 +10,8 @@ using ProjetAvengers.Models;
 namespace ProjetAvengers.Migrations
 {
     [DbContext(typeof(AvengersContext))]
-    [Migration("20200420120229_ForKeyFin")]
-    partial class ForKeyFin
+    [Migration("20200422161721_Test")]
+    partial class Test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -120,14 +120,14 @@ namespace ProjetAvengers.Migrations
                     b.Property<string>("Civilite")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Date_de_deces")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("Date_de_deces")
+                        .HasColumnType("date");
 
-                    b.Property<string>("Date_de_naissance")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("Date_de_naissance")
+                        .HasColumnType("date");
 
-                    b.Property<string>("Derniere_modification")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("Derniere_modification")
+                        .HasColumnType("date");
 
                     b.Property<string>("Nationalite")
                         .HasColumnType("nvarchar(max)");
@@ -357,10 +357,10 @@ namespace ProjetAvengers.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date_de_creation")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<DateTime>("Derniere_modification")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<string>("Nom")
                         .HasColumnType("nvarchar(max)");
@@ -387,7 +387,10 @@ namespace ProjetAvengers.Migrations
                     b.Property<int?>("CivilsId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Liste_Super_HeroId")
+                    b.Property<int?>("Liste_Super_Hero_Crise_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Liste_Super_Hero_Mission_Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Nom")
@@ -399,7 +402,7 @@ namespace ProjetAvengers.Migrations
                     b.Property<string>("Pouvoir")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Score")
+                    b.Property<int?>("Score")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -408,7 +411,9 @@ namespace ProjetAvengers.Migrations
                         .IsUnique()
                         .HasFilter("[CivilsId] IS NOT NULL");
 
-                    b.HasIndex("Liste_Super_HeroId");
+                    b.HasIndex("Liste_Super_Hero_Crise_Id");
+
+                    b.HasIndex("Liste_Super_Hero_Mission_Id");
 
                     b.ToTable("Super_Hero");
                 });
@@ -423,7 +428,10 @@ namespace ProjetAvengers.Migrations
                     b.Property<int?>("CivilsId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Liste_Super_VilainId")
+                    b.Property<int?>("Liste_Super_Vilain_Crise_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Liste_Super_Vilain_Mission_Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Nom")
@@ -435,7 +443,7 @@ namespace ProjetAvengers.Migrations
                     b.Property<string>("Pouvoir")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Score")
+                    b.Property<int?>("Score")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -444,7 +452,9 @@ namespace ProjetAvengers.Migrations
                         .IsUnique()
                         .HasFilter("[CivilsId] IS NOT NULL");
 
-                    b.HasIndex("Liste_Super_VilainId");
+                    b.HasIndex("Liste_Super_Vilain_Crise_Id");
+
+                    b.HasIndex("Liste_Super_Vilain_Mission_Id");
 
                     b.ToTable("Super_Vilain");
                 });
@@ -631,11 +641,11 @@ namespace ProjetAvengers.Migrations
 
             modelBuilder.Entity("ProjetAvengers.Models.Coordonnee", b =>
                 {
-                    b.HasOne("ProjetAvengers.Models.Civils", "Civils_Id")
+                    b.HasOne("ProjetAvengers.Models.Civils", "Civils")
                         .WithMany("Coordonnees")
                         .HasForeignKey("CivilsId");
 
-                    b.HasOne("ProjetAvengers.Models.Organisation", "Organisation_Id")
+                    b.HasOne("ProjetAvengers.Models.Organisation", "Organisation")
                         .WithMany("Coordonnees")
                         .HasForeignKey("OrganisationId");
                 });
@@ -719,13 +729,13 @@ namespace ProjetAvengers.Migrations
                         .WithOne("Super_Hero")
                         .HasForeignKey("ProjetAvengers.Models.Super_Hero", "CivilsId");
 
-                    b.HasOne("ProjetAvengers.Models.Liste_sh_crise", "Liste_SuperVilain_Crise")
+                    b.HasOne("ProjetAvengers.Models.Liste_sh_crise", "Liste_SuperHero_Crise")
                         .WithMany("Id_superhero")
-                        .HasForeignKey("Liste_Super_HeroId");
+                        .HasForeignKey("Liste_Super_Hero_Crise_Id");
 
                     b.HasOne("ProjetAvengers.Models.Vert.Liste_SuperHero_Mission", "Liste_SuperHero_Missions")
                         .WithMany("Super_Heros")
-                        .HasForeignKey("Liste_Super_HeroId");
+                        .HasForeignKey("Liste_Super_Hero_Mission_Id");
                 });
 
             modelBuilder.Entity("ProjetAvengers.Models.Super_Vilain", b =>
@@ -736,11 +746,11 @@ namespace ProjetAvengers.Migrations
 
                     b.HasOne("ProjetAvengers.Models.Liste_sv_crise", "Liste_SuperVilain_Crise")
                         .WithMany("Id_supervilain")
-                        .HasForeignKey("Liste_Super_VilainId");
+                        .HasForeignKey("Liste_Super_Vilain_Crise_Id");
 
                     b.HasOne("ProjetAvengers.Models.Vert.Liste_SuperVilain_Mission", "Liste_SuperVilain_Missions")
                         .WithMany("Super_Vilains")
-                        .HasForeignKey("Liste_Super_VilainId");
+                        .HasForeignKey("Liste_Super_Vilain_Mission_Id");
                 });
 
             modelBuilder.Entity("ProjetAvengers.Models.Vert.Liste_SuperHero_Mission", b =>

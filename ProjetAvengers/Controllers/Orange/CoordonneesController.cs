@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjetAvengers.Models;
 
-
 namespace ProjetAvengers.Controllers.Orange
 {
     [Route("api/[controller]")]
@@ -23,7 +22,7 @@ namespace ProjetAvengers.Controllers.Orange
 
         // GET: api/Coordonnees
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Coordonnee>>> GetCoordonnees()
+        public async Task<ActionResult<IEnumerable<Coordonnee>>> GetCoordonnee()
         {
             return await _context.Coordonnee.ToListAsync();
         }
