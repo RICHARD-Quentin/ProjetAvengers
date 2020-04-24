@@ -23,17 +23,11 @@ namespace ProjetAvengers.Models
         [Column(TypeName = "date")]
         public DateTime Derniere_modification { get; set; }
         public ICollection<Coordonnee> Coordonnees { get; set; }
-        [JsonIgnore]
         public ICollection<Membre> Membres { get; set; }
-        [JsonIgnore]
         public Organisation Dirigeant { get; set; }
-        [JsonIgnore]
         public Super_Hero Super_Hero { get; set; }
-        [JsonIgnore]
         public Super_Vilain Super_Vilain { get; set; }
-        [JsonIgnore]
         public ICollection<Incidents> Incidents { get; set; }
-        [JsonIgnore]
         public Utilisateur Utilisateur { get; set; }
     }
 }
