@@ -25,7 +25,7 @@ namespace ProjetAvengers.Controllers.Orange
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Membre>>> GetMembre()
         {
-            return await _context.Membre.ToListAsync();
+            return await _context.Membre.Include(c => c.Civils).ToListAsync();
         }
 
         // GET: api/Membres/5

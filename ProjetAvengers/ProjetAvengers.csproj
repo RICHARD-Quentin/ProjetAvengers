@@ -14,6 +14,12 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200415140720_ModulesOranges.cs" />
     <Compile Remove="Migrations\20200415140720_ModulesOranges.Designer.cs" />
+    <Compile Remove="Migrations\20200422125931_civcoordFK.cs" />
+    <Compile Remove="Migrations\20200422125931_civcoordFK.Designer.cs" />
+    <Compile Remove="Migrations\20200422134624_test1.cs" />
+    <Compile Remove="Migrations\20200422134624_test1.Designer.cs" />
+    <Compile Remove="Migrations\20200422150915_test4.cs" />
+    <Compile Remove="Migrations\20200422150915_test4.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

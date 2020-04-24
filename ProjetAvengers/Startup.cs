@@ -30,7 +30,7 @@ namespace ProjetAvengers
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowMyOrigin",
-                builder => builder.AllowAnyOrigin());
+                builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             }); 
             services.AddDbContext<AvengersContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Database")));
 

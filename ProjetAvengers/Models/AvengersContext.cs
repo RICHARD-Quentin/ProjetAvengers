@@ -14,6 +14,7 @@ namespace ProjetAvengers.Models
         public AvengersContext(DbContextOptions<AvengersContext> options)
             : base(options)
         {
+            this.ChangeTracker.LazyLoadingEnabled = false;
         }
 
         public DbSet<Civils> Civils { get; set; }
@@ -36,12 +37,38 @@ namespace ProjetAvengers.Models
         public DbSet<Liste_SuperHero_Mission> Liste_SuperHero_Mission { get; set; }
         public DbSet<Liste_SuperVilain_Mission> Liste_SuperVilain_Mission { get; set; }
 
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<Civils>().ToTable("Civils");
             modelBuilder.Entity<Organisation>().ToTable("Organisation");
+            modelBuilder.Entity<Coordonnee>().ToTable("Coordonnee");
             modelBuilder.Entity<Membre>().ToTable("Membre");
+            modelBuilder.Entity<Super_Hero>().ToTable("Super_Hero");
+            modelBuilder.Entity<Super_Vilain>().ToTable("Super_Vilain");
+            modelBuilder.Entity<Modules>().ToTable("Modules");
+            modelBuilder.Entity<Privileges>().ToTable("Privileges");
+            modelBuilder.Entity<Utilisateur>().ToTable("Utilisateur");
+            modelBuilder.Entity<Incidents>().ToTable("Incidents");
+            modelBuilder.Entity<Crise>().ToTable("Crise");
+            modelBuilder.Entity<Litige>().ToTable("Litige");
+            modelBuilder.Entity<Liste_sh_crise>().ToTable("Liste_sh_crise");
+            modelBuilder.Entity<Liste_sv_crise>().ToTable("Liste_sv_crise");
+            modelBuilder.Entity<Mission>().ToTable("Mission");
+            modelBuilder.Entity<Rapport_Mission>().ToTable("Rapport_Mission");
+            modelBuilder.Entity<Satisfaction>().ToTable("Satisfaction");
+            modelBuilder.Entity<Liste_SuperHero_Mission>().ToTable("Liste_SuperHero_Mission");
+            modelBuilder.Entity<Liste_SuperVilain_Mission>().ToTable("Liste_SuperVilain_Mission");
 
+            //modelBuilder.Entity<Civils>()
+            //    .HasMany(c => c.Coordonnees)
+            //    .WithOne(c => c.Civils);
+
+            //modelBuilder.Entity<Organisation>()
+            //    .HasMany(c => c.Coordonnees)
+            //    .WithOne(o => o.Organisation);
         }
     }
 }

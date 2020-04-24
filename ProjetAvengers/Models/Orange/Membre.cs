@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ProjetAvengers.Models
@@ -11,6 +12,8 @@ namespace ProjetAvengers.Models
         public int Id { get; set; }
         [ForeignKey("CivilsId")]
         public Civils Civils { get; set; }
+        [JsonIgnore]
+
         [ForeignKey("OrganisationId")]
         public Organisation Organisation { get; set; }
     }

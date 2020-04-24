@@ -118,14 +118,14 @@ namespace ProjetAvengers.Migrations
                     b.Property<string>("Civilite")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Date_de_deces")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("Date_de_deces")
+                        .HasColumnType("date");
 
-                    b.Property<string>("Date_de_naissance")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("Date_de_naissance")
+                        .HasColumnType("date");
 
-                    b.Property<string>("Derniere_modification")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("Derniere_modification")
+                        .HasColumnType("date");
 
                     b.Property<string>("Nationalite")
                         .HasColumnType("nvarchar(max)");
@@ -355,10 +355,10 @@ namespace ProjetAvengers.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date_de_creation")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<DateTime>("Derniere_modification")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<string>("Nom")
                         .HasColumnType("nvarchar(max)");
@@ -400,7 +400,7 @@ namespace ProjetAvengers.Migrations
                     b.Property<string>("Pouvoir")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Score")
+                    b.Property<int?>("Score")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -441,7 +441,7 @@ namespace ProjetAvengers.Migrations
                     b.Property<string>("Pouvoir")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Score")
+                    b.Property<int?>("Score")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -639,11 +639,11 @@ namespace ProjetAvengers.Migrations
 
             modelBuilder.Entity("ProjetAvengers.Models.Coordonnee", b =>
                 {
-                    b.HasOne("ProjetAvengers.Models.Civils", "Civils_Id")
+                    b.HasOne("ProjetAvengers.Models.Civils", "Civils")
                         .WithMany("Coordonnees")
                         .HasForeignKey("CivilsId");
 
-                    b.HasOne("ProjetAvengers.Models.Organisation", "Organisation_Id")
+                    b.HasOne("ProjetAvengers.Models.Organisation", "Organisation")
                         .WithMany("Coordonnees")
                         .HasForeignKey("OrganisationId");
                 });
@@ -727,7 +727,7 @@ namespace ProjetAvengers.Migrations
                         .WithOne("Super_Hero")
                         .HasForeignKey("ProjetAvengers.Models.Super_Hero", "CivilsId");
 
-                    b.HasOne("ProjetAvengers.Models.Liste_sh_crise", "Liste_SuperVilain_Crise")
+                    b.HasOne("ProjetAvengers.Models.Liste_sh_crise", "Liste_SuperHero_Crise")
                         .WithMany("Id_superhero")
                         .HasForeignKey("Liste_Super_Hero_Crise_Id");
 
