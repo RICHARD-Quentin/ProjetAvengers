@@ -25,7 +25,7 @@ namespace ProjetAvengers.Controllers.Orange
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Super_Hero>>> GetSuper_Hero()
         {
-            return await _context.Super_Hero.ToListAsync();
+            return await _context.Super_Hero.Include(C => C.Civils_Id).ToListAsync();
         }
 
         // GET: api/Super_Hero/5
