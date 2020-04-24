@@ -24,7 +24,7 @@ namespace ProjetAvengers.Controllers.Orange
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Super_Vilain>>> GetSuper_Vilain()
         {
-            return await _context.Super_Vilain.ToListAsync();
+            return await _context.Super_Vilain.Include(V =>V.Civils_Id).ToListAsync();
         }
 
         // GET: api/Super_Vilain/5
