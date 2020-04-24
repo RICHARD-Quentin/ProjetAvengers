@@ -25,7 +25,7 @@ namespace ProjetAvengers.Controllers.Orange
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Organisation>>> GetOrganisation()
         {
-            return await _context.Organisation.Include(o => o.Civils_Id).ToListAsync();
+            return await _context.Organisation.Include(o => o.Civils_Id).Include(m => m.Membres).ThenInclude(c => c.Civils).ToListAsync();
         }
 
         // GET: api/Organisations/5
