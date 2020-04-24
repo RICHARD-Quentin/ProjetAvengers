@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using ProjetAvengers.Models;
 
 
@@ -23,10 +24,15 @@ namespace ProjetAvengers.Controllers.Orange
 
         // GET: api/Membres
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Membre>>> GetMembre()
+        public String Get()
         {
-            return await _context.Membre.Include(c => c.Civils).ToListAsync();
+            return JsonConvert.SerializeObject(_context.Membre.Include(c => c.Civils).ToList(), Formatting.Indented,
+            new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
         }
+
 
         // GET: api/Membres/5
         [HttpGet("{id}")]
