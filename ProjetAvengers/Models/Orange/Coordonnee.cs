@@ -17,9 +17,7 @@ namespace ProjetAvengers.Models
         public string Pays { get; set; }
         public string Telephone_fixe { get; set; }
         public bool Est_Principale { get; set; }
-        [JsonIgnore]
         public virtual Civils Civils { get; set; }
-        [JsonIgnore]
         public virtual Organisation Organisation { get; set; }
 
     }

@@ -12,8 +12,6 @@ namespace ProjetAvengers.Models
         public int Id { get; set; }
         [ForeignKey("CivilsId")]
         public Civils Civils { get; set; }
-        [JsonIgnore]
-
         [ForeignKey("OrganisationId")]
         public Organisation Organisation { get; set; }
     }

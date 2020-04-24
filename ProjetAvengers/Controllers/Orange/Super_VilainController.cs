@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using ProjetAvengers.Models;
 
 namespace ProjetAvengers.Controllers.Orange
@@ -22,9 +23,13 @@ namespace ProjetAvengers.Controllers.Orange
 
         // GET: api/Super_Vilain
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Super_Vilain>>> GetSuper_Vilain()
+        public String Get()
         {
-            return await _context.Super_Vilain.Include(V =>V.Civils_Id).ToListAsync();
+            return JsonConvert.SerializeObject(_context.Super_Vilain.Include(V => V.Civils_Id).ToList(), Formatting.Indented,
+            new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
         }
 
         // GET: api/Super_Vilain/5
