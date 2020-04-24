@@ -22,7 +22,7 @@ namespace ProjetAvengers.Controllers.Orange
         }
 
         // GET: api/Civils
-[HttpGet]
+        [HttpGet]
         public String Get()
         {
              return JsonConvert.SerializeObject(_context.Civils.Include(c => c.Coordonnees).ToList(), Formatting.Indented,
