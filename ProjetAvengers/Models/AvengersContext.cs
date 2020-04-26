@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using ProjetAvengers.Models;
 using ProjetAvengers.Models.Bleu;
 using ProjetAvengers.Models.Vert;
@@ -62,13 +63,31 @@ namespace ProjetAvengers.Models
             modelBuilder.Entity<Liste_SuperHero_Mission>().ToTable("Liste_SuperHero_Mission");
             modelBuilder.Entity<Liste_SuperVilain_Mission>().ToTable("Liste_SuperVilain_Mission");
 
-            //modelBuilder.Entity<Civils>()
-            //    .HasMany(c => c.Coordonnees)
-            //    .WithOne(c => c.Civils);
+            modelBuilder.Entity<Civils>()
+                .HasMany(c => c.Coordonnees)
+                .WithOne(c => c.Civils)
+                .OnDelete(DeleteBehavior.Cascade);
 
-            //modelBuilder.Entity<Organisation>()
-            //    .HasMany(c => c.Coordonnees)
-            //    .WithOne(o => o.Organisation);
+            modelBuilder.Entity<Civils>()
+                .HasMany(c => c.Membres)
+                .WithOne(m => m.Civils)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Civils>()
+                .HasOne(c => c.Dirigeant)
+                .WithOne(o => o.Civils_Id)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Civils>()
+                .HasOne(c => c.Super_Hero)
+                .WithOne(h => h.Civils_Id)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Civils>()
+                .HasOne(c => c.Super_Vilain)
+                .WithOne(v => v.Civils_Id)
+                .OnDelete(DeleteBehavior.SetNull);
+
         }
     }
 }

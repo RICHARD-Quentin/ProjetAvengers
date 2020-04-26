@@ -227,11 +227,17 @@ namespace ProjetAvengers.Migrations
                     b.Property<int?>("CivilsId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Lieu")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ModuleId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Nature")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("OrganisationId")
                         .HasColumnType("int");
@@ -641,7 +647,8 @@ namespace ProjetAvengers.Migrations
                 {
                     b.HasOne("ProjetAvengers.Models.Civils", "Civils")
                         .WithMany("Coordonnees")
-                        .HasForeignKey("CivilsId");
+                        .HasForeignKey("CivilsId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ProjetAvengers.Models.Organisation", "Organisation")
                         .WithMany("Coordonnees")
@@ -707,7 +714,8 @@ namespace ProjetAvengers.Migrations
                 {
                     b.HasOne("ProjetAvengers.Models.Civils", "Civils")
                         .WithMany("Membres")
-                        .HasForeignKey("CivilsId");
+                        .HasForeignKey("CivilsId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("ProjetAvengers.Models.Organisation", "Organisation")
                         .WithMany("Membres")
@@ -718,14 +726,16 @@ namespace ProjetAvengers.Migrations
                 {
                     b.HasOne("ProjetAvengers.Models.Civils", "Civils_Id")
                         .WithOne("Dirigeant")
-                        .HasForeignKey("ProjetAvengers.Models.Organisation", "CivilsId");
+                        .HasForeignKey("ProjetAvengers.Models.Organisation", "CivilsId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("ProjetAvengers.Models.Super_Hero", b =>
                 {
                     b.HasOne("ProjetAvengers.Models.Civils", "Civils_Id")
                         .WithOne("Super_Hero")
-                        .HasForeignKey("ProjetAvengers.Models.Super_Hero", "CivilsId");
+                        .HasForeignKey("ProjetAvengers.Models.Super_Hero", "CivilsId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("ProjetAvengers.Models.Liste_sh_crise", "Liste_SuperHero_Crise")
                         .WithMany("Id_superhero")
@@ -740,7 +750,8 @@ namespace ProjetAvengers.Migrations
                 {
                     b.HasOne("ProjetAvengers.Models.Civils", "Civils_Id")
                         .WithOne("Super_Vilain")
-                        .HasForeignKey("ProjetAvengers.Models.Super_Vilain", "CivilsId");
+                        .HasForeignKey("ProjetAvengers.Models.Super_Vilain", "CivilsId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("ProjetAvengers.Models.Liste_sv_crise", "Liste_SuperVilain_Crise")
                         .WithMany("Id_supervilain")
