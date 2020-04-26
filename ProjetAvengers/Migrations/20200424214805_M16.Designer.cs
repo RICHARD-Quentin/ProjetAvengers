@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetAvengers.Models;
 
 namespace ProjetAvengers.Migrations
 {
     [DbContext(typeof(AvengersContext))]
-    partial class AvengersContextModelSnapshot : ModelSnapshot
+    [Migration("20200424214805_M16")]
+    partial class M16
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -227,17 +229,11 @@ namespace ProjetAvengers.Migrations
                     b.Property<int?>("CivilsId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Lieu")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ModuleId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Nature")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("OrganisationId")
                         .HasColumnType("int");
@@ -714,8 +710,7 @@ namespace ProjetAvengers.Migrations
                 {
                     b.HasOne("ProjetAvengers.Models.Civils", "Civils")
                         .WithMany("Membres")
-                        .HasForeignKey("CivilsId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .HasForeignKey("CivilsId");
 
                     b.HasOne("ProjetAvengers.Models.Organisation", "Organisation")
                         .WithMany("Membres")
@@ -726,16 +721,14 @@ namespace ProjetAvengers.Migrations
                 {
                     b.HasOne("ProjetAvengers.Models.Civils", "Civils_Id")
                         .WithOne("Dirigeant")
-                        .HasForeignKey("ProjetAvengers.Models.Organisation", "CivilsId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .HasForeignKey("ProjetAvengers.Models.Organisation", "CivilsId");
                 });
 
             modelBuilder.Entity("ProjetAvengers.Models.Super_Hero", b =>
                 {
                     b.HasOne("ProjetAvengers.Models.Civils", "Civils_Id")
                         .WithOne("Super_Hero")
-                        .HasForeignKey("ProjetAvengers.Models.Super_Hero", "CivilsId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .HasForeignKey("ProjetAvengers.Models.Super_Hero", "CivilsId");
 
                     b.HasOne("ProjetAvengers.Models.Liste_sh_crise", "Liste_SuperHero_Crise")
                         .WithMany("Id_superhero")
@@ -750,8 +743,7 @@ namespace ProjetAvengers.Migrations
                 {
                     b.HasOne("ProjetAvengers.Models.Civils", "Civils_Id")
                         .WithOne("Super_Vilain")
-                        .HasForeignKey("ProjetAvengers.Models.Super_Vilain", "CivilsId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .HasForeignKey("ProjetAvengers.Models.Super_Vilain", "CivilsId");
 
                     b.HasOne("ProjetAvengers.Models.Liste_sv_crise", "Liste_SuperVilain_Crise")
                         .WithMany("Id_supervilain")

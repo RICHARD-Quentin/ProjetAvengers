@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetAvengers.Models;
 
 namespace ProjetAvengers.Migrations
 {
     [DbContext(typeof(AvengersContext))]
-    partial class AvengersContextModelSnapshot : ModelSnapshot
+    [Migration("20200424215540_M17")]
+    partial class M17
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -227,17 +229,11 @@ namespace ProjetAvengers.Migrations
                     b.Property<int?>("CivilsId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Lieu")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ModuleId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Nature")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("OrganisationId")
                         .HasColumnType("int");
