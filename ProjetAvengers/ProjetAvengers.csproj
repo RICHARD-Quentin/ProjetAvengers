@@ -20,6 +20,8 @@
     <Compile Remove="Migrations\20200422134624_test1.Designer.cs" />
     <Compile Remove="Migrations\20200422150915_test4.cs" />
     <Compile Remove="Migrations\20200422150915_test4.Designer.cs" />
+    <Compile Remove="Migrations\20200428105308_cascadeUpdateMission.cs" />
+    <Compile Remove="Migrations\20200428105308_cascadeUpdateMission.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using ProjetAvengers.Models;
 
 namespace ProjetAvengers.Controllers.Rouge
@@ -22,9 +23,31 @@ namespace ProjetAvengers.Controllers.Rouge
 
         // GET: api/Incidents
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Incidents>>> GetIncidents()
+        public String Get()
         {
-            return await _context.Incidents.ToListAsync();
+            return JsonConvert.SerializeObject(_context.Incidents.Include(i => i.Identite_origine_appel).ToList(), Formatting.Indented,
+            new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+        }
+        [HttpGet("Traite")]
+        public String Traite()
+        {
+            return JsonConvert.SerializeObject(_context.Incidents.Where(m => m.estTraite == true).ToList(), Formatting.Indented,
+                new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+        }
+        [HttpGet("NonTraite")]
+        public String NonTraite()
+        {
+            return JsonConvert.SerializeObject(_context.Incidents.Where(m => m.estTraite == false).ToList(), Formatting.Indented,
+                new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
         }
 
         // GET: api/Incidents/5

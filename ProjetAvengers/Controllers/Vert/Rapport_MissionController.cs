@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using ProjetAvengers.Models;
 using ProjetAvengers.Models.Vert;
 
@@ -23,10 +24,16 @@ namespace ProjetAvengers.Controllers.Vert
 
         // GET: api/Rapport_Mission
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Rapport_Mission>>> GetRapport_Mission()
+        public String Get()
         {
-            return await _context.Rapport_Mission.ToListAsync();
+            return JsonConvert.SerializeObject(_context.Rapport_Mission.ToList(), Formatting.Indented,
+            new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
         }
+
+
 
         // GET: api/Rapport_Mission/5
         [HttpGet("{id}")]

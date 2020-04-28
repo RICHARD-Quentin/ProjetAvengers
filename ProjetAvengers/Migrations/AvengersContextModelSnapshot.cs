@@ -245,6 +245,9 @@ namespace ProjetAvengers.Migrations
                     b.Property<int?>("UtilisateurId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("estTraite")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CivilsId");
@@ -508,20 +511,20 @@ namespace ProjetAvengers.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Date_debut")
+                    b.Property<DateTime?>("Date_debut")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Date_fin")
+                    b.Property<DateTime?>("Date_fin")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Gravite")
                         .HasColumnType("int");
 
                     b.Property<int?>("IncidentsId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Itineraire")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ModuleId")
                         .HasColumnType("int");
@@ -534,6 +537,9 @@ namespace ProjetAvengers.Migrations
 
                     b.Property<string>("Titre")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Urgence")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -558,7 +564,7 @@ namespace ProjetAvengers.Migrations
                     b.Property<string>("Detail_intervention")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MissionId")
+                    b.Property<int>("MissionId")
                         .HasColumnType("int");
 
                     b.Property<int?>("ModuleId")
@@ -567,14 +573,16 @@ namespace ProjetAvengers.Migrations
                     b.Property<string>("Nouveau_Civil")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Titre")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Vilain_intervention")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("MissionId")
-                        .IsUnique()
-                        .HasFilter("[MissionId] IS NOT NULL");
+                        .IsUnique();
 
                     b.HasIndex("ModuleId");
 
@@ -780,7 +788,8 @@ namespace ProjetAvengers.Migrations
                 {
                     b.HasOne("ProjetAvengers.Models.Incidents", "Incidents")
                         .WithOne("Mission")
-                        .HasForeignKey("ProjetAvengers.Models.Vert.Mission", "IncidentsId");
+                        .HasForeignKey("ProjetAvengers.Models.Vert.Mission", "IncidentsId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ProjetAvengers.Models.Bleu.Modules", "Modules")
                         .WithMany("Missions")
@@ -795,7 +804,9 @@ namespace ProjetAvengers.Migrations
                 {
                     b.HasOne("ProjetAvengers.Models.Vert.Mission", "Mission")
                         .WithOne("Rapport_Mission")
-                        .HasForeignKey("ProjetAvengers.Models.Vert.Rapport_Mission", "MissionId");
+                        .HasForeignKey("ProjetAvengers.Models.Vert.Rapport_Mission", "MissionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ProjetAvengers.Models.Bleu.Modules", "Modules")
                         .WithMany("Rapport_Missions")

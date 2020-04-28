@@ -21,12 +21,11 @@ namespace ProjetAvengers.Controllers.Orange
         {
             _context = context;
         }
-
         // GET: api/Organisations
         [HttpGet]
         public String Get()
         {
-            return JsonConvert.SerializeObject(_context.Organisation.Include(o => o.Civils_Id).Include(m => m.Membres).ThenInclude(c => c.Civils).ToList(), Formatting.Indented,
+            return JsonConvert.SerializeObject(_context.Organisation.Include(o => o.Civils_Id).Include(o => o.Coordonnees).Include(m => m.Membres).ThenInclude(c => c.Civils).ToList(), Formatting.Indented,
             new JsonSerializerSettings
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore

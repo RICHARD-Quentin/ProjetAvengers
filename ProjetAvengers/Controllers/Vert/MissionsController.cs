@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using ProjetAvengers.Models;
 using ProjetAvengers.Models.Vert;
 
@@ -23,11 +24,43 @@ namespace ProjetAvengers.Controllers.Vert
 
         // GET: api/Missions
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Mission>>> GetMission()
+        public String Get()
         {
-            return await _context.Mission.ToListAsync();
+            return JsonConvert.SerializeObject(_context.Mission.Include(i => i.Incidents).ToList(), Formatting.Indented,
+            new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+        }
+        [HttpGet("EnCours")]
+        public String EnCours()
+        {
+            return JsonConvert.SerializeObject(_context.Mission.Include(i => i.Incidents).Where(m => m.Date_fin == null && m.Date_debut != null).ToList(), Formatting.Indented,
+                new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
         }
 
+        [HttpGet("EnAttente")]
+        public String EnAttente()
+        {
+            return JsonConvert.SerializeObject(_context.Mission.Include(i => i.Incidents).Where(m => m.Date_debut == null).ToList(), Formatting.Indented,
+                new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+        }
+
+        [HttpGet("Terminee")]
+        public String Terminee()
+        {
+            return JsonConvert.SerializeObject(_context.Mission.Include(i => i.Incidents).Include(r => r.Rapport_Mission).Where(m => m.Date_fin != null).ToList(), Formatting.Indented,
+                new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+        }
         // GET: api/Missions/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Mission>> GetMission(int id)
