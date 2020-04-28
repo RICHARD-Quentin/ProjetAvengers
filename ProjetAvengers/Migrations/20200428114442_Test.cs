@@ -19,7 +19,7 @@ namespace ProjetAvengers.Migrations
                     Telephone_portable = table.Column<string>(nullable: true),
                     Nationalite = table.Column<string>(nullable: true),
                     Date_de_naissance = table.Column<DateTime>(type: "date", nullable: false),
-                    Date_de_deces = table.Column<DateTime>(type: "date", nullable: false),
+                    Date_de_deces = table.Column<DateTime>(type: "date", nullable: true),
                     Derniere_modification = table.Column<DateTime>(type: "date", nullable: false)
                 },
                 constraints: table =>
@@ -60,7 +60,7 @@ namespace ProjetAvengers.Migrations
                         column: x => x.CivilsId,
                         principalTable: "Civils",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -87,7 +87,7 @@ namespace ProjetAvengers.Migrations
                         column: x => x.CivilsId,
                         principalTable: "Civils",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Coordonnee_Organisation_OrganisationId",
                         column: x => x.OrganisationId,
@@ -113,7 +113,7 @@ namespace ProjetAvengers.Migrations
                         column: x => x.CivilsId,
                         principalTable: "Civils",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Membre_Organisation_OrganisationId",
                         column: x => x.OrganisationId,
@@ -157,7 +157,9 @@ namespace ProjetAvengers.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Nature = table.Column<string>(nullable: true),
                     Lieu = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
                     UtilisateurId = table.Column<int>(nullable: true),
                     ModuleId = table.Column<int>(nullable: true),
                     CivilsId = table.Column<int>(nullable: true),
@@ -259,10 +261,11 @@ namespace ProjetAvengers.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nature = table.Column<string>(nullable: true),
                     Titre = table.Column<string>(nullable: true),
-                    Itineraire = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
                     Gravite = table.Column<int>(nullable: false),
-                    Date_debut = table.Column<DateTime>(nullable: false),
-                    Date_fin = table.Column<DateTime>(nullable: false),
+                    Urgence = table.Column<int>(nullable: false),
+                    Date_debut = table.Column<DateTime>(nullable: true),
+                    Date_fin = table.Column<DateTime>(nullable: true),
                     OrganisationId = table.Column<int>(nullable: true),
                     ModuleId = table.Column<int>(nullable: true),
                     IncidentsId = table.Column<int>(nullable: true)
@@ -275,7 +278,7 @@ namespace ProjetAvengers.Migrations
                         column: x => x.IncidentsId,
                         principalTable: "Incidents",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Mission_Modules_ModuleId",
                         column: x => x.ModuleId,
@@ -403,7 +406,7 @@ namespace ProjetAvengers.Migrations
                     Detail_intervention = table.Column<string>(nullable: true),
                     Vilain_intervention = table.Column<string>(nullable: true),
                     Nouveau_Civil = table.Column<string>(nullable: true),
-                    MissionId = table.Column<int>(nullable: true),
+                    MissionId = table.Column<int>(nullable: false),
                     ModuleId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -414,7 +417,7 @@ namespace ProjetAvengers.Migrations
                         column: x => x.MissionId,
                         principalTable: "Mission",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Rapport_Mission_Modules_ModuleId",
                         column: x => x.ModuleId,
@@ -477,7 +480,7 @@ namespace ProjetAvengers.Migrations
                         column: x => x.CivilsId,
                         principalTable: "Civils",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Super_Hero_Liste_sh_crise_Liste_Super_Hero_Crise_Id",
                         column: x => x.Liste_Super_Hero_Crise_Id,
@@ -514,7 +517,7 @@ namespace ProjetAvengers.Migrations
                         column: x => x.CivilsId,
                         principalTable: "Civils",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Super_Vilain_Liste_sv_crise_Liste_Super_Vilain_Crise_Id",
                         column: x => x.Liste_Super_Vilain_Crise_Id,
@@ -663,8 +666,7 @@ namespace ProjetAvengers.Migrations
                 name: "IX_Rapport_Mission_MissionId",
                 table: "Rapport_Mission",
                 column: "MissionId",
-                unique: true,
-                filter: "[MissionId] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rapport_Mission_ModuleId",

@@ -12,10 +12,11 @@ namespace ProjetAvengers.Models.Vert
         public int Id { get; set; }
         public string Nature { get; set; }
         public string Titre { get; set; }
-        public string Itineraire { get; set; }
+        public string Description { get; set; }
         public int Gravite { get; set; }
-        public DateTime Date_debut { get; set; }
-        public DateTime Date_fin { get; set; }
+        public int Urgence { get; set; }
+        public DateTime? Date_debut { get; set; }
+        public DateTime? Date_fin { get; set; }
         public Rapport_Mission Rapport_Mission { get; set; }
         public ICollection<Satisfaction> Satisfactions { get; set; }
         public Organisation Organisation { get; set; }
@@ -25,5 +26,6 @@ namespace ProjetAvengers.Models.Vert
         public Liste_SuperVilain_Mission Liste_SuperVilain_Mission { get; set; }
         [ForeignKey("IncidentsId")]
         public Incidents Incidents { get; set; }
+        public int? IncidentsId { get; set; }
     }
 }

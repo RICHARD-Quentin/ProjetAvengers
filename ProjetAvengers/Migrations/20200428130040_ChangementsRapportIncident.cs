@@ -2,29 +2,30 @@
 
 namespace ProjetAvengers.Migrations
 {
-    public partial class updateIncident : Migration
+    public partial class ChangementsRapportIncident : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "Description",
-                table: "Incidents",
+                name: "Ttitre",
+                table: "Rapport_Mission",
                 nullable: true);
 
-            migrationBuilder.AddColumn<string>(
-                name: "Nature",
+            migrationBuilder.AddColumn<bool>(
+                name: "estTraite",
                 table: "Incidents",
-                nullable: true);
+                nullable: false,
+                defaultValue: false);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Description",
-                table: "Incidents");
+                name: "Ttitre",
+                table: "Rapport_Mission");
 
             migrationBuilder.DropColumn(
-                name: "Nature",
+                name: "estTraite",
                 table: "Incidents");
         }
     }

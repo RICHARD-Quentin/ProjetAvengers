@@ -88,6 +88,20 @@ namespace ProjetAvengers.Models
                 .WithOne(v => v.Civils_Id)
                 .OnDelete(DeleteBehavior.SetNull);
 
+            modelBuilder.Entity<Mission>()
+                .HasOne(m => m.Incidents)
+                .WithOne(m => m.Mission)
+                .HasForeignKey<Mission>(m => m.IncidentsId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Rapport_Mission>()
+                .HasOne(r => r.Mission)
+                .WithOne(m => m.Rapport_Mission)
+                .HasForeignKey<Rapport_Mission>(r => r.MissionId)
+                 .OnDelete(DeleteBehavior.Cascade);
+            ;
+
+
         }
     }
 }
