@@ -154,7 +154,7 @@ namespace ProjetAvengers.Migrations
                     b.Property<string>("Adresse")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CivilsId")
+                    b.Property<int>("CivilsId")
                         .HasColumnType("int");
 
                     b.Property<int>("Code_Postal")
@@ -656,7 +656,8 @@ namespace ProjetAvengers.Migrations
                     b.HasOne("ProjetAvengers.Models.Civils", "Civils")
                         .WithMany("Coordonnees")
                         .HasForeignKey("CivilsId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ProjetAvengers.Models.Organisation", "Organisation")
                         .WithMany("Coordonnees")
