@@ -22,6 +22,8 @@
     <Compile Remove="Migrations\20200422150915_test4.Designer.cs" />
     <Compile Remove="Migrations\20200428105308_cascadeUpdateMission.cs" />
     <Compile Remove="Migrations\20200428105308_cascadeUpdateMission.Designer.cs" />
+    <Compile Remove="Migrations\20200429080110_CivilId.cs" />
+    <Compile Remove="Migrations\20200429080110_CivilId.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

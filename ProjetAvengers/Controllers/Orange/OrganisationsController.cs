@@ -25,11 +25,8 @@ namespace ProjetAvengers.Controllers.Orange
         [HttpGet]
         public String Get()
         {
-<<<<<<< HEAD
             return JsonConvert.SerializeObject(_context.Organisation.Include(o => o.Civils_Id).Include(o => o.Coordonnees).Include(m => m.Membres).ThenInclude(c => c.Civils).ToList(), Formatting.Indented,
-=======
-            return JsonConvert.SerializeObject(_context.Organisation.Include(o => o.Coordonnees).Include(o => o.Civils_Id).Include(m => m.Membres).ThenInclude(c => c.Civils).ToList(), Formatting.Indented,
->>>>>>> 2c5de6aef81ded9d891dbba7e0b9e1c692ef7d03
+
             new JsonSerializerSettings
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore

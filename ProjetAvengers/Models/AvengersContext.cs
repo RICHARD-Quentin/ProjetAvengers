@@ -68,6 +68,12 @@ namespace ProjetAvengers.Models
                 .WithOne(c => c.Civils)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<Coordonnee>()
+                .HasOne(c => c.Civils)
+                .WithMany(c => c.Coordonnees)
+                .HasForeignKey(c => c.CivilsId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<Civils>()
                 .HasMany(c => c.Membres)
                 .WithOne(m => m.Civils)
